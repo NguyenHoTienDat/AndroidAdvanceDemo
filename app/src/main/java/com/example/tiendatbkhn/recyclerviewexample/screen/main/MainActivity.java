@@ -12,6 +12,7 @@ import com.example.tiendatbkhn.recyclerviewexample.databinding.ActivityMainBindi
 import com.example.tiendatbkhn.recyclerviewexample.model.main.MainRepo;
 import com.example.tiendatbkhn.recyclerviewexample.screen.BaseView;
 import com.example.tiendatbkhn.recyclerviewexample.screen.recyclerviewex.RecyclerViewExActivity;
+import com.example.tiendatbkhn.recyclerviewexample.screen.viewpagerex.ViewPagerActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
     private ActivityMainBinding mBinding;
@@ -46,5 +47,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void goRecyclerViewExample() {
         startActivity(new Intent(MainActivity.this, RecyclerViewExActivity.class));
+    }
+
+    @Override
+    public void goViewPagerExample() {
+        startActivity(new Intent(MainActivity.this, ViewPagerActivity.class));
     }
 }

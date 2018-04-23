@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.tiendatbkhn.recyclerviewexample.screen.viewpagerex.ViewPagerViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tlCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabSelectedTextColor="@android:color/holo_red_dark"
+            app:tabTextColor="@android:color/darker_gray"
+            app:viewPager="@{vpExample}"></android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpExample"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:viewPagerAdater="@{viewModel.adapter}"></android.support.v4.view.ViewPager>
+    </LinearLayout>
+</layout>

@@ -2,6 +2,7 @@ package com.example.tiendatbkhn.recyclerviewexample.util;
 
 import android.databinding.BindingAdapter;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.tiendatbkhn.recyclerviewexample.R;
+import com.example.tiendatbkhn.recyclerviewexample.screen.viewpagerex.ZoomOutPagerTranform;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -135,9 +137,10 @@ public class CustomBingdingAdapter {
     }
 
     @BindingAdapter({"viewPagerAdater"})
-    public static void setAdapterForViewPager(final ViewPager view, FragmentStatePagerAdapter pagerAdapter) {
+    public static void setAdapterForViewPager(final ViewPager view, FragmentPagerAdapter pagerAdapter) {
         // final Wallet adapter = new MainActionsAdapter(view.getContext(), activity.getSupportFragmentManager());
         view.setAdapter(pagerAdapter);
+        view.setPageTransformer(false,new ZoomOutPagerTranform());
     }
 
     @BindingAdapter({"slidePagerAdapter"})

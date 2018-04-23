@@ -41,6 +41,8 @@ public class MainViewModel extends BaseObservable implements MainContract.ViewMo
     public void onExampleClick(Example obj) {
         if (obj.getId() == 1) {
             mNavigator.goRecyclerViewExample();
+        } else if (obj.getId() == 2) {
+            mNavigator.goViewPagerExample();
         }
     }
 }

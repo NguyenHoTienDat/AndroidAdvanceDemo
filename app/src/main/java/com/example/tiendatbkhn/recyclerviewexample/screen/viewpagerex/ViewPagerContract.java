@@ -1,22 +1,18 @@
-package com.example.tiendatbkhn.recyclerviewexample.screen.main;
+package com.example.tiendatbkhn.recyclerviewexample.screen.viewpagerex;
 
 import com.example.tiendatbkhn.recyclerviewexample.screen.BaseView;
 import com.example.tiendatbkhn.recyclerviewexample.screen.BaseViewModel;
 
 /**
- * Created by tiendatbkhn on 19/04/2018.
+ * Created by tiendatbkhn on 23/04/2018.
  */
 
-public interface MainContract {
-
+public interface ViewPagerContract {
     interface ViewModel extends BaseViewModel {
 
-        void getMainRepo();
     }
 
     interface View extends BaseView {
-        void goRecyclerViewExample();
 
-        void goViewPagerExample();
     }
 }
