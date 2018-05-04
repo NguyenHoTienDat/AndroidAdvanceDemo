@@ -11,7 +11,11 @@ import com.example.tiendatbkhn.recyclerviewexample.R;
 import com.example.tiendatbkhn.recyclerviewexample.databinding.ActivityMainBinding;
 import com.example.tiendatbkhn.recyclerviewexample.model.main.MainRepo;
 import com.example.tiendatbkhn.recyclerviewexample.screen.BaseView;
+import com.example.tiendatbkhn.recyclerviewexample.screen.asynctaskex.AsyncTaskActivity;
+import com.example.tiendatbkhn.recyclerviewexample.screen.broadcast.BroadcastActivity;
+import com.example.tiendatbkhn.recyclerviewexample.screen.notification.NotificationActivity;
 import com.example.tiendatbkhn.recyclerviewexample.screen.recyclerviewex.RecyclerViewExActivity;
+import com.example.tiendatbkhn.recyclerviewexample.screen.service.ServiceActivity;
 import com.example.tiendatbkhn.recyclerviewexample.screen.viewpagerex.ViewPagerActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
@@ -52,5 +56,25 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void goViewPagerExample() {
         startActivity(new Intent(MainActivity.this, ViewPagerActivity.class));
+    }
+
+    @Override
+    public void goAsyncTaskExample() {
+        startActivity(new Intent(MainActivity.this, AsyncTaskActivity.class));
+    }
+
+    @Override
+    public void goBroadcastExample() {
+        startActivity(new Intent(MainActivity.this, BroadcastActivity.class));
+    }
+
+    @Override
+    public void goNotificationExample() {
+        startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+    }
+
+    @Override
+    public void goServiceExample() {
+        startActivity(new Intent(MainActivity.this, ServiceActivity.class));
     }
 }

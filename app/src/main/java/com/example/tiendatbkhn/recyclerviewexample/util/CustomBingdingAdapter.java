@@ -140,7 +140,7 @@ public class CustomBingdingAdapter {
     public static void setAdapterForViewPager(final ViewPager view, FragmentPagerAdapter pagerAdapter) {
         // final Wallet adapter = new MainActionsAdapter(view.getContext(), activity.getSupportFragmentManager());
         view.setAdapter(pagerAdapter);
-        view.setPageTransformer(false,new ZoomOutPagerTranform());
+        view.setPageTransformer(false, new ZoomOutPagerTranform());
     }
 
     @BindingAdapter({"slidePagerAdapter"})
@@ -162,6 +162,16 @@ public class CustomBingdingAdapter {
     @BindingAdapter("cbInit")
     public static void checkBoxInit(CheckBox view, boolean b) {
         view.setChecked(b);
+
+    }
+
+    @BindingAdapter("lightState")
+    public static void setLightState(ImageView view, boolean state) {
+        if (state) {
+            view.setImageResource(R.drawable.light_on);
+        } else {
+            view.setImageResource(R.drawable.light_off);
+        }
 
     }
 

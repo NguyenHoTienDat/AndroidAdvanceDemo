@@ -44,5 +44,17 @@ public class MainViewModel extends BaseObservable implements MainContract.ViewMo
         } else if (obj.getId() == 2) {
             mNavigator.goViewPagerExample();
         }
+        else if (obj.getId() == 3) {
+            mNavigator.goAsyncTaskExample();
+        }
+        else if (obj.getId() == 4) {
+            mNavigator.goBroadcastExample();
+        }
+        else if (obj.getId() == 5) {
+            mNavigator.goNotificationExample();
+        }
+        else {
+            mNavigator.goServiceExample();
+        }
     }
 }

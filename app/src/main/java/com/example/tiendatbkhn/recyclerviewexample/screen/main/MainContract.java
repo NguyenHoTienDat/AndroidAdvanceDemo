@@ -18,5 +18,13 @@ public interface MainContract {
         void goRecyclerViewExample();
 
         void goViewPagerExample();
+
+        void goAsyncTaskExample();
+
+        void goBroadcastExample();
+
+        void goNotificationExample();
+
+        void goServiceExample();
     }
 }

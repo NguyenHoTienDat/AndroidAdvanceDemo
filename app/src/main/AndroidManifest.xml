@@ -19,7 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".screen.recyclerviewex.RecyclerViewExActivity" />
-        <activity android:name=".screen.viewpagerex.ViewPagerActivity"></activity>
+        <activity android:name=".screen.viewpagerex.ViewPagerActivity" />
+        <activity android:name=".screen.asynctaskex.AsyncTaskActivity" />
+        <activity android:name=".screen.broadcast.BroadcastActivity" />
+        <activity android:name=".screen.notification.NotificationActivity" />
+        <activity android:name=".screen.service.ServiceActivity"></activity>
     </application>
 
 </manifest>
