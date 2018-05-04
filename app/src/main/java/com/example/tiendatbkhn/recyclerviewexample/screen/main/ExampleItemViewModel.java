@@ -11,24 +11,24 @@ import com.example.tiendatbkhn.recyclerviewexample.model.main.Example;
  */
 
 public class ExampleItemViewModel extends BaseObservable {
-    private Example example;
+    private Example mExample;
     private ItemExampleClick itemExampleClick;
 
     public ExampleItemViewModel(Example example, ItemExampleClick itemExampleClick) {
-        this.example = example;
+        this.mExample = example;
         this.itemExampleClick = itemExampleClick;
     }
 
     public void onExampleClick() {
-        itemExampleClick.onExampleClick(example);
+        itemExampleClick.onExampleClick(mExample);
     }
     @Bindable
     public Example getExample() {
-        return example;
+        return mExample;
     }
 
     public void setExample(Example example) {
-        this.example = example;
+        this.mExample = example;
         notifyPropertyChanged(BR.example);
     }
 

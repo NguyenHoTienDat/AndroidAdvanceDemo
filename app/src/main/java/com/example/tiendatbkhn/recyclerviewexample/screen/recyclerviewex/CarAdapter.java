@@ -32,7 +32,7 @@ public class CarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int VIEW_TYPE_LOADING = 1;
 
     private Context mContext;
-    private List<Car> cars;
+    private List<Car> mCars;
     private OnLoadMoreListener mOnLoadMoreListener;
     private RecyclerView rcCar;
 
@@ -42,7 +42,7 @@ public class CarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public CarAdapter(Context mContext, List<Car> cars) {
         this.mContext = mContext;
-        this.cars = cars;
+        this.mCars = cars;
         isLoad = false;
         isHaveMoreData = true;
         Log.e("car size : ",cars.size()+"");
@@ -70,7 +70,7 @@ public class CarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof CarViewHolder) {
-            ((CarViewHolder)holder).setBinding(cars.get(position));
+            ((CarViewHolder)holder).setBinding(mCars.get(position));
 
         } else if (holder instanceof LoadingViewHolder){
 
@@ -85,12 +85,12 @@ public class CarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return (position == cars.size()) ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
+        return (position == mCars.size()) ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
     @Override
     public int getItemCount() {
-        return (cars == null) ?0 :cars.size() +1 ;
+        return (mCars == null) ?0 :mCars.size() +1 ;
     }
 
     public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
@@ -129,27 +129,27 @@ public class CarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public int getNumberOfData() {
-        return cars.size();
+        return mCars.size();
     }
 
     public void addDataLoadMore(List<Car> carMore) {
-        this.cars.addAll(carMore);
+        this.mCars.addAll(carMore);
         notifyDataSetChanged();
 
     }
 
     public class CarViewHolder extends RecyclerView.ViewHolder {
-        private ItemCarBinding binding;
+        private ItemCarBinding mBinding;
 
         public CarViewHolder(ItemCarBinding binding) {
             super(binding.getRoot());
-            this.binding = binding;
+            this.mBinding = binding;
 
         }
 
         public void setBinding(Car car) {
-            binding.setViewModel(new CarItemViewModel(car));
-            binding.executePendingBindings();
+            mBinding.setViewModel(new CarItemViewModel(car));
+            mBinding.executePendingBindings();
         }
     }
 

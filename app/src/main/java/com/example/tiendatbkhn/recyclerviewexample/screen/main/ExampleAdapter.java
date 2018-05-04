@@ -19,12 +19,12 @@ import java.util.List;
 
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
     private Context mContext;
-    private List<Example> examples;
+    private List<Example> mExamples;
     private ExampleItemViewModel.ItemExampleClick itemExampleClick;
 
     public ExampleAdapter(Context mContext, List<Example> examples) {
         this.mContext = mContext;
-        this.examples = examples;
+        this.mExamples = examples;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
     @Override
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
-        holder.setBinding(examples.get(position));
+        holder.setBinding(mExamples.get(position));
     }
 
     public void setItemExampleClick(ExampleItemViewModel.ItemExampleClick itemExampleClick) {
@@ -50,21 +50,21 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
     @Override
     public int getItemCount() {
-        return examples.size();
+        return mExamples.size();
     }
 
     public class ExampleViewHolder extends RecyclerView.ViewHolder {
-        private ItemExampleBinding binding;
+        private ItemExampleBinding mBinding;
         private ExampleItemViewModel.ItemExampleClick itemExampleClick;
         public ExampleViewHolder(ItemExampleBinding binding,ExampleItemViewModel.ItemExampleClick itemExampleClick) {
             super(binding.getRoot());
-            this.binding = binding;
+            this.mBinding = binding;
             this.itemExampleClick = itemExampleClick;
         }
 
         public void setBinding(Example example) {
-            binding.setViewModel(new ExampleItemViewModel(example,itemExampleClick));
-            binding.executePendingBindings();
+            mBinding.setViewModel(new ExampleItemViewModel(example,itemExampleClick));
+            mBinding.executePendingBindings();
         }
     }
 }

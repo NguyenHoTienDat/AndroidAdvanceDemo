@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewPagerActivity extends AppCompatActivity implements ViewPagerContract.View {
-    private ActivityViewPagerBinding binding;
+    private ActivityViewPagerBinding mBinding;
     private ViewPagerViewModel mViewModel;
     private ViewPagerAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_view_pager);
+        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_view_pager);
 
         mViewModel = new ViewPagerViewModel();
         mViewModel.setView(this);
@@ -29,7 +29,7 @@ public class ViewPagerActivity extends AppCompatActivity implements ViewPagerCon
         mViewModel.setAdapter(mAdapter);
 
         initViewModel();
-        binding.setViewModel(mViewModel);
+        mBinding.setViewModel(mViewModel);
     }
 
     @Override

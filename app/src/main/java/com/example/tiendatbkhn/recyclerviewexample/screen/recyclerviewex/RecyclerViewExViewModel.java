@@ -19,7 +19,7 @@ public class RecyclerViewExViewModel extends BaseObservable implements
         RecyclerViewExContract.ViewModel,CarAdapter.OnLoadMoreListener {
     private RecyclerViewExContract.View mNavigator;
     private CarAdapter mAdapter;
-    private ActivityRecyclerViewExBinding binding;
+    private ActivityRecyclerViewExBinding mBinding;
 
     @Override
     public void onStartViewModel() {
@@ -38,12 +38,12 @@ public class RecyclerViewExViewModel extends BaseObservable implements
 
     public void setAdapter(CarAdapter adapter) {
         this.mAdapter = adapter;
-        this.mAdapter.setRcCar(binding.rcExample);
+        this.mAdapter.setRcCar(mBinding.rcExample);
         this.mAdapter.setOnLoadMoreListener(this);
     }
 
     public void setBinding(ActivityRecyclerViewExBinding binding) {
-        this.binding = binding;
+        this.mBinding = binding;
     }
 
     @Override

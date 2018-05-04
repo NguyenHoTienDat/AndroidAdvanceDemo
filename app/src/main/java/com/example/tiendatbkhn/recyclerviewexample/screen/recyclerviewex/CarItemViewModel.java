@@ -13,20 +13,20 @@ import com.example.tiendatbkhn.recyclerviewexample.screen.main.ExampleItemViewMo
  */
 
 public class CarItemViewModel extends BaseObservable {
-    private Car car;
+    private Car mCar;
     private ExampleItemViewModel.ItemExampleClick itemExampleClick;
 
     public CarItemViewModel(Car car) {
-        this.car = car;
+        this.mCar = car;
     }
 
     @Bindable
     public Car getCar() {
-        return car;
+        return mCar;
     }
 
     public void setCar(Car car) {
-        this.car = car;
+        this.mCar = car;
         notifyPropertyChanged(BR.car);
     }
 
