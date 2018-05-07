@@ -32,6 +32,7 @@ public class MusicService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        mCurrentSongId = -1;
     }
 
     @Override
@@ -39,34 +40,40 @@ public class MusicService extends Service {
 
         if (intent.getBooleanExtra(Constant.MUSIC_PLAY_KEY, false)) {
             updateCurrentSong();
-        } else {
-            mSong = (Song) intent.getParcelableExtra(Constant.MUSIC_KEY);
-            createNewSong();
+            return super.onStartCommand(intent, flags, startId);
         }
 
-
+        if (intent.getBooleanExtra(Constant.MUSIC_CLOSE_KEY, false)) {
+            stopMusicService();
+            return super.onStartCommand(intent, flags, startId);
+        }
+        mSong = (Song) intent.getParcelableExtra(Constant.MUSIC_KEY);
+        createNewSong();
         return super.onStartCommand(intent, flags, startId);
     }
 
     public void stopMusicService() {
-        Log.e("ser","stop");
+        Log.e("ser", "stop");
         stopSelf();
         mMediaPlayer.pause();
         mMediaPlayer.release();
     }
 
     public void createNewSong() {
-        if (mMediaPlayer != null) {
-            mMediaPlayer.pause();
+        if (mSong.getId() != mCurrentSongId || mCurrentSongId == -1){
+            if (mMediaPlayer != null ) {
+                mMediaPlayer.pause();
+            }
+            mMediaPlayer = MediaPlayer.create(this, mSong.getUri());
+            mMediaPlayer.start();
+            mCurrentSongId = mSong.getId();
+            startForeground(mSong.getId(), buildNotification(true));
         }
 
-        mMediaPlayer = MediaPlayer.create(this, mSong.getUri());
-        mMediaPlayer.start();
-        startForeground(mSong.getId(), buildNotification(true));
     }
 
     public void updateCurrentSong() {
-        Log.e("ser","chay pause");
+        Log.e("ser", "chay pause");
         if (mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
             startForeground(mSong.getId(), buildNotification(false));
@@ -81,17 +88,12 @@ public class MusicService extends Service {
     public Notification buildNotification(boolean isPlay) {
         Intent launchIntent = new Intent(this, ServiceActivity.class);
         PendingIntent launchPendingIntent =
-                PendingIntent.getActivity(this, mSong.getId(), launchIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.getActivity(this, mSong.getId(), launchIntent, PendingIntent.FLAG_NO_CREATE);
 
         Intent updateIntent = new Intent(this, MusicService.class);
         updateIntent.putExtra(Constant.MUSIC_PLAY_KEY, true);
         PendingIntent updatePendingIntent =
-                PendingIntent.getService(this, mSong.getId(), updateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-//        Intent closeIntent = new Intent(this, MusicService.class);
-//        closeIntent.putExtra(Constant.MUSIC_CLOSE_KEY, true);
-//        PendingIntent closePendingIntent =
-//                PendingIntent.getService(this, mSong.getId(), closeIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.getService(this, mSong.getId(), updateIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "channel")
