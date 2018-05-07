@@ -3,6 +3,7 @@
     package="com.example.tiendatbkhn.recyclerviewexample">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -23,7 +24,9 @@
         <activity android:name=".screen.asynctaskex.AsyncTaskActivity" />
         <activity android:name=".screen.broadcast.BroadcastActivity" />
         <activity android:name=".screen.notification.NotificationActivity" />
-        <activity android:name=".screen.service.ServiceActivity"></activity>
+        <activity android:name=".screen.service.ServiceActivity"
+            android:launchMode="singleTask"></activity>
+        <service android:name=".screen.service.MusicService"/>
     </application>
 
 </manifest>

@@ -1,11 +1,16 @@
 package com.example.tiendatbkhn.recyclerviewexample.screen.main;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.widget.Toast;
 
 import com.example.tiendatbkhn.recyclerviewexample.R;
 import com.example.tiendatbkhn.recyclerviewexample.databinding.ActivityMainBinding;
@@ -17,6 +22,7 @@ import com.example.tiendatbkhn.recyclerviewexample.screen.notification.Notificat
 import com.example.tiendatbkhn.recyclerviewexample.screen.recyclerviewex.RecyclerViewExActivity;
 import com.example.tiendatbkhn.recyclerviewexample.screen.service.ServiceActivity;
 import com.example.tiendatbkhn.recyclerviewexample.screen.viewpagerex.ViewPagerActivity;
+import com.example.tiendatbkhn.recyclerviewexample.util.Constant;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
     private ActivityMainBinding mBinding;
@@ -75,6 +81,34 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void goServiceExample() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    Constant.MY_PERMISSIONS_REQUEST_STORAGE);
+
+            return;
+        }
         startActivity(new Intent(MainActivity.this, ServiceActivity.class));
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case Constant.MY_PERMISSIONS_REQUEST_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    goServiceExample();
+
+                } else {
+                    Toast.makeText(this, "Permission denied!", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+        }
     }
 }
